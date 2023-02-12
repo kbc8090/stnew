@@ -2429,8 +2429,11 @@ check_control_code:
 	 * because they can be embedded inside a control sequence, and
 	 * they must not cause conflicts with sequences.
 	 */
-	if (control) {
-		tcontrolcode(u);
+   if (control) {
+     /* in UTF-8 mode ignore handling C1 control characters */
+     if (IS_SET(MODE_UTF8) && ISCONTROLC1(u))
+       return;
+     tcontrolcode(u);
 		/*
 		 * control codes are not shown ever
 		 */
@@ -2489,9 +2492,13 @@ check_control_code:
 
 	if (width == 2) {
 		gp->mode |= ATTR_WIDE;
-		if (term.c.x+1 < term.col) {
-			gp[1].u = '\0';
-			gp[1].mode = ATTR_WDUMMY;
+      if (term.c.x+1 < term.col) {
+        if (gp[1].mode == ATTR_WIDE && term.c.x+2 < term.col) {
+          gp[2].u = ' ';
+          gp[2].mode &= ~ATTR_WDUMMY;
+        }
+        gp[1].u = '\0';
+        gp[1].mode = ATTR_WDUMMY;
 		}
 	}
 	if (term.c.x+width < term.col) {
