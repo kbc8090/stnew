@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "CaskaydiaCove Nerd Font:size=14:antialias=true:autohint=true";
+static char *font = "JetBrainsMono Nerd Font:size=13:style=Medium:dpi=96:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -110,7 +110,7 @@ float alpha = 0.88;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
   /* 8 normal colors */
-  [0] = "#1d2021", /* hard contrast: #1d2021 / soft contrast: #32302f */
+  [0] = "#6e5e57", /* hard contrast: #1d2021 / soft contrast: #32302f */
   [1] = "#cc241d", /* red     */
   [2] = "#98971a", /* green   */
   [3] = "#d79921", /* yellow  */
@@ -130,9 +130,9 @@ static const char *colorname[] = {
   [15] = "#ebdbb2", /* white   */
 
   /* special colors */
-  [256] = "#ffffff", /* background */
-  [257] = "#9fb0ce", /* foreground */
-  [258] = "#ffb26b", /* cursorColor */
+  [256] = "#282828", /* background */
+  [257] = "#ebdbb2", /* foreground */
+  [258] = "#d79921", /* cursorColor */
   "black",
 };
 
@@ -243,9 +243,9 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+	{ ControlMask,              XK_equal,       zoom,           {.f = +1} },
+	{ ControlMask,              XK_minus,        zoom,           {.f = -1} },
+	{ TERMMOD,              XK_equal,        zoomreset,      {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },

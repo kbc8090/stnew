@@ -1952,7 +1952,6 @@ strhandle(void)
 					xloadcols();
  					return; /* color reset without parameter */
 				}
-					return; /* color reset without parameter */
 				fprintf(stderr, "erresc: invalid color j=%d, p=%s\n",
 				        j, p ? p : "(null)");
 			} else {
